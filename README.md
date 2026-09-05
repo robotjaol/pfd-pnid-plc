@@ -96,34 +96,21 @@ The objective is not to create isolated PLC exercises. The objective is to build
 
 Industrial automation is more than writing ladder logic. A credible automation system must connect:
 
-```text
-PROCESS
-   ↓
-PROCESS REQUIREMENTS
-   ↓
-PFD
-   ↓
-P&ID
-   ↓
-INSTRUMENTATION
-   ↓
-I/O LIST
-   ↓
-CONTROL PHILOSOPHY
-   ↓
-PLC SOFTWARE
-   ↓
-INDUSTRIAL NETWORK
-   ↓
-VIRTUAL PLANT
-   ↓
-HMI / SCADA
-   ↓
-ALARMS + HISTORIAN
-   ↓
-DATA ANALYTICS
-   ↓
-VERIFICATION
+```mermaid
+flowchart TD
+    A[Process] --> B[Process Requirements]
+    B --> C[PFD]
+    C --> D[P&ID]
+    D --> E[Instrumentation]
+    E --> F[I/O List]
+    F --> G[Control Philosophy]
+    G --> H[PLC Software]
+    H --> I[Industrial Network]
+    I --> J[Virtual Plant]
+    J --> K[HMI / SCADA]
+    K --> L[Alarms + Historian]
+    L --> M[Data Analytics]
+    M --> N[Verification]
 ```
 
 This repository therefore treats PLC programming as one component of a larger cyber-physical control system.
@@ -205,42 +192,23 @@ This repository is designed to demonstrate capability across the complete indust
 
 A typical project developed in this repository follows:
 
-```text
-                       ENGINEERING LAYER
-                              │
-                ┌─────────────┴─────────────┐
-                │                           │
-               PFD                        P&ID
-                │                           │
-                └─────────────┬─────────────┘
-                              │
-                       Control Philosophy
-                              │
-                     Instrument / I/O List
-                              │
-                              ▼
-                    ┌──────────────────┐
-                    │    CODESYS PLC   │
-                    │                  │
-                    │  State Machines  │
-                    │  Function Blocks │
-                    │  PID Controllers │
-                    │  Interlocks      │
-                    │  Alarms          │
-                    └────────┬─────────┘
-                             │
-                    Modbus TCP / OPC UA
-                             │
-              ┌──────────────┼──────────────┐
-              │              │              │
-              ▼              ▼              ▼
-        Factory I/O       HMI/SCADA       Python
-              │                             │
-              │                             ▼
-              │                        Historian
-              │                             │
-              │                             ▼
-              └─────────────────────── Analytics
+```mermaid
+flowchart TD
+    subgraph ENG["Engineering Layer"]
+        PFD[PFD]
+        PID[P&ID]
+    end
+    PFD --> CP[Control Philosophy]
+    PID --> CP
+    CP --> IO[Instrument / I/O List]
+    IO --> PLC["CODESYS PLC<br/>State Machines · Function Blocks<br/>PID Controllers · Interlocks · Alarms"]
+    PLC --> NET[Modbus TCP / OPC UA]
+    NET --> FIO[Factory I/O]
+    NET --> HMI[HMI / SCADA]
+    NET --> PY[Python]
+    PY --> HIST[Historian]
+    HIST --> AN[Analytics]
+    FIO --> AN
 ```
 
 ---
@@ -377,8 +345,13 @@ A modular automated conveyor system for detection, classification, routing, and 
 
 **Functions:** product detection · conveyor sequencing · classification logic · diverter control · reject handling · product counting · jam detection · interlocks · fault recovery · throughput measurement
 
-```text
-Sensors → PLC State Machine → Classification → Routing Logic → Actuator Control → Production Metrics
+```mermaid
+flowchart LR
+    A[Sensors] --> B[PLC State Machine]
+    B --> C[Classification]
+    C --> D[Routing Logic]
+    D --> E[Actuator Control]
+    E --> F[Production Metrics]
 ```
 
 ### Project 02 — Automated Material Handling System
@@ -393,10 +366,14 @@ A multi-zone material handling system demonstrating coordination between conveyo
 
 A closed-loop process control system using simulated process instrumentation.
 
-```text
-Level Sensor → Process Variable → PID Controller → Control Output → Pump / Valve → Tank Process
-                                        ↑____________________________________________|
-                                                        Feedback
+```mermaid
+flowchart LR
+    A[Level Sensor] --> B[Process Variable]
+    B --> C[PID Controller]
+    C --> D[Control Output]
+    D --> E[Pump / Valve]
+    E --> F[Tank Process]
+    F -. Feedback .-> A
 ```
 
 **Engineering scope:** analog I/O · scaling · PID · setpoint management · anti-windup · high-high / low-low level protection · alarm generation · trend analysis · disturbance rejection
@@ -406,8 +383,16 @@ Level Sensor → Process Variable → PID Controller → Control Output → Pump
 
 ISA-88-inspired batch sequencing for a simulated process plant.
 
-```text
-IDLE → READY → FILL → MIX → PROCESS → DRAIN → COMPLETE
+```mermaid
+stateDiagram-v2
+    [*] --> IDLE
+    IDLE --> READY
+    READY --> FILL
+    FILL --> MIX
+    MIX --> PROCESS
+    PROCESS --> DRAIN
+    DRAIN --> COMPLETE
+    COMPLETE --> [*]
 ```
 
 **Includes:** recipe parameters · equipment states · sequence transitions · hold/abort/reset · interlocks · alarm handling · batch metrics
@@ -417,8 +402,16 @@ IDLE → READY → FILL → MIX → PROCESS → DRAIN → COMPLETE
 
 The flagship implementation integrates multiple engineering layers into a single virtual manufacturing system.
 
-```text
-RAW MATERIAL → DETECTION → PROCESSING → SORTING → BUFFER → QUALITY CONTROL → ACCEPT/REJECT → PACKAGING → WAREHOUSE
+```mermaid
+flowchart LR
+    A[Raw Material] --> B[Detection]
+    B --> C[Processing]
+    C --> D[Sorting]
+    D --> E[Buffer]
+    E --> F[Quality Control]
+    F --> G[Accept / Reject]
+    G --> H[Packaging]
+    H --> I[Warehouse]
 ```
 
 | Domain | Scope |
@@ -433,34 +426,42 @@ RAW MATERIAL → DETECTION → PROCESSING → SORTING → BUFFER → QUALITY CON
 
 PLC applications are designed around modular software components rather than monolithic control logic.
 
-```text
-PLC Application
-│
-├── System Manager
-├── Mode Manager
-├── Equipment Modules
-│   ├── Conveyor
-│   ├── Motor
-│   ├── Valve
-│   ├── Cylinder
-│   └── Pump
-├── Process Sequences
-├── State Machines
-├── Interlocks
-├── Permissives
-├── Alarm Manager
-├── Fault Manager
-├── PID Controllers
-├── Communication
-└── Diagnostics
+```mermaid
+flowchart TD
+    APP[PLC Application] --> SM[System Manager]
+    APP --> MM[Mode Manager]
+    APP --> EM[Equipment Modules]
+    EM --> EM1[Conveyor]
+    EM --> EM2[Motor]
+    EM --> EM3[Valve]
+    EM --> EM4[Cylinder]
+    EM --> EM5[Pump]
+    APP --> PS[Process Sequences]
+    APP --> ST[State Machines]
+    APP --> IL[Interlocks]
+    APP --> PM[Permissives]
+    APP --> AM[Alarm Manager]
+    APP --> FM[Fault Manager]
+    APP --> PID[PID Controllers]
+    APP --> COM[Communication]
+    APP --> DIAG[Diagnostics]
 ```
 
 **Example equipment state model:**
 
-```text
-OFF → READY → STARTING → RUNNING → STOPPING → OFF
+```mermaid
+stateDiagram-v2
+    [*] --> OFF
+    OFF --> READY
+    READY --> STARTING
+    STARTING --> RUNNING
+    RUNNING --> STOPPING
+    STOPPING --> OFF
 
-Any State → FAULT → RESETTING → READY
+    state "Any State" as ANY
+    ANY --> FAULT
+    FAULT --> RESETTING
+    RESETTING --> READY
 ```
 
 ---
@@ -477,14 +478,23 @@ Any State → FAULT → RESETTING → READY
 
 **Separation of concerns:**
 
-```text
-INPUT PROCESSING → CONTROL LOGIC → SEQUENCE MANAGEMENT → OUTPUT COMMANDS → DIAGNOSTICS
+```mermaid
+flowchart LR
+    A[Input Processing] --> B[Control Logic]
+    B --> C[Sequence Management]
+    C --> D[Output Commands]
+    D --> E[Diagnostics]
 ```
 
 **Traceability:**
 
-```text
-Requirement → P&ID → Control Narrative → I/O → PLC Logic → Test Case
+```mermaid
+flowchart LR
+    A[Requirement] --> B[P&ID]
+    B --> C[Control Narrative]
+    C --> D[I/O]
+    D --> E[PLC Logic]
+    E --> F[Test Case]
 ```
 
 ---
@@ -551,8 +561,11 @@ Factory I/O provides the virtual physical layer.
 
 **Basic integration architecture:**
 
-```text
-Factory I/O → I/O Signals → Industrial Protocol → CODESYS SoftPLC → PLC Application
+```mermaid
+flowchart LR
+    A[Factory I/O] -->|I/O Signals| B[Industrial Protocol]
+    B --> C[CODESYS SoftPLC]
+    C --> D[PLC Application]
 ```
 
 ---
@@ -579,15 +592,17 @@ Formal projects will maintain a complete I/O list with: tag, description, signal
 ### Modbus TCP
 Used for straightforward register and coil mapping between industrial components.
 
-```text
-Factory I/O ↔ Modbus TCP ↔ CODESYS
+```mermaid
+flowchart LR
+    A[Factory I/O] <-->|Modbus TCP| B[CODESYS]
 ```
 
 ### OPC UA
 Used for structured interoperability and higher-level data integration.
 
-```text
-CODESYS ↔ OPC UA ↔ SCADA / Python / Industrial Data Platform
+```mermaid
+flowchart LR
+    A[CODESYS] <-->|OPC UA| B[SCADA / Python / Industrial Data Platform]
 ```
 
 ---
@@ -635,9 +650,15 @@ Each fault should define:
 
 ## Virtual Commissioning
 
-```text
-Control Requirements → PLC Implementation → Virtual Plant Integration → I/O Verification
-→ Sequence Testing → Fault Injection → Performance Testing → Acceptance Criteria
+```mermaid
+flowchart TD
+    A[Control Requirements] --> B[PLC Implementation]
+    B --> C[Virtual Plant Integration]
+    C --> D[I/O Verification]
+    D --> E[Sequence Testing]
+    E --> F[Fault Injection]
+    F --> G[Performance Testing]
+    G --> H[Acceptance Criteria]
 ```
 
 The goal is to detect control defects before physical hardware commissioning.
@@ -657,8 +678,13 @@ The goal is to detect control defects before physical hardware commissioning.
 
 ## Industrial Data Layer
 
-```text
-PLC → OPC UA / Modbus TCP → Python Acquisition Service → Time-Series / SQL Database → Engineering Analytics → Dashboard
+```mermaid
+flowchart TD
+    A[PLC] --> B[OPC UA / Modbus TCP]
+    B --> C[Python Acquisition Service]
+    C --> D[Time-Series / SQL Database]
+    D --> E[Engineering Analytics]
+    E --> F[Dashboard]
 ```
 
 **Potential analytics:** cycle-time distribution, bottleneck identification, equipment utilization, alarm frequency, downtime analysis, production trend, energy intensity, predictive indicators
@@ -669,8 +695,13 @@ PLC → OPC UA / Modbus TCP → Python Acquisition Service → Time-Series / SQL
 
 Industrial AI is intentionally positioned **after** deterministic automation has been implemented and validated.
 
-```text
-Sensors → PLC → Historian → Feature Engineering → Analytics / ML → Decision Support
+```mermaid
+flowchart TD
+    A[Sensors] --> B[PLC]
+    B --> C[Historian]
+    C --> D[Feature Engineering]
+    D --> E[Analytics / ML]
+    E --> F[Decision Support]
 ```
 
 **Potential future experiments:** anomaly detection, predictive maintenance, remaining useful life estimation, process quality prediction, cycle-time prediction, bottleneck detection, energy optimization
@@ -797,9 +828,16 @@ A project is not considered complete when the PLC program merely runs. A project
 
 The long-term goal is for another engineer to be able to:
 
-```text
-clone repository → install documented dependencies → open CODESYS project → open Factory I/O scene
-→ configure communication → start PLC runtime → run virtual plant → reproduce tests → obtain comparable results
+```mermaid
+flowchart TD
+    A[Clone Repository] --> B[Install Documented Dependencies]
+    B --> C[Open CODESYS Project]
+    C --> D[Open Factory I/O Scene]
+    D --> E[Configure Communication]
+    E --> F[Start PLC Runtime]
+    F --> G[Run Virtual Plant]
+    G --> H[Reproduce Tests]
+    H --> I[Obtain Comparable Results]
 ```
 
 ...without relying on undocumented configuration.
@@ -864,9 +902,17 @@ Please keep contributions: **technically justified · reproducible · documented
 
 The long-term goal is to evolve this repository into a vendor-neutral industrial automation engineering laboratory covering the path from process definition to operational intelligence.
 
-```text
-PROCESS ENGINEERING → INSTRUMENTATION → CONTROL ENGINEERING → PLC → VIRTUAL COMMISSIONING
-→ SCADA → INDUSTRIAL NETWORKING → DATA ENGINEERING → ANALYTICS → INDUSTRIAL AI
+```mermaid
+flowchart LR
+    A[Process Engineering] --> B[Instrumentation]
+    B --> C[Control Engineering]
+    C --> D[PLC]
+    D --> E[Virtual Commissioning]
+    E --> F[SCADA]
+    F --> G[Industrial Networking]
+    G --> H[Data Engineering]
+    H --> I[Analytics]
+    I --> J[Industrial AI]
 ```
 
 Rather than demonstrating individual software packages, the repository aims to demonstrate the engineering discipline required to integrate them into one coherent industrial system.
@@ -881,9 +927,18 @@ The immediate development focus is:
 
 Starting from a process definition and I/O architecture, the project will progressively implement:
 
-```text
-PFD → P&ID → I/O → Control Philosophy → CODESYS → Factory I/O
-→ Virtual Commissioning → OPC UA / Modbus TCP → HMI / SCADA → Industrial Data → Engineering Analytics
+```mermaid
+flowchart TD
+    A[PFD] --> B[P&ID]
+    B --> C[I/O]
+    C --> D[Control Philosophy]
+    D --> E[CODESYS]
+    E --> F[Factory I/O]
+    F --> G[Virtual Commissioning]
+    G --> H[OPC UA / Modbus TCP]
+    H --> I[HMI / SCADA]
+    I --> J[Industrial Data]
+    J --> K[Engineering Analytics]
 ```
 
 ---
