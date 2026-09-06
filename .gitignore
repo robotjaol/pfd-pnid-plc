@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.venv/
+venv/
+ENV/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Reproducibility outputs
+*.log
+*.tmp
+*.bak
+coverage/
+htmlcov/
+.pytest_cache/
+
+# Build artifacts
+build/
+dist/
+out/
+
+# Local data / generated docs
+*.sqlite3
+*.db
+
+# Optional project artifacts
+factoryio/*.bak
+
+# Node
+node_modules/

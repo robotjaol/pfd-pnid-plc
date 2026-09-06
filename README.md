@@ -1,523 +1,146 @@
 # PFD · P&ID · PLC
 
-### End-to-End Industrial Automation and Process Control Engineering Laboratory
+A professional engineering repository for industrial automation, process design, PLC logic, and virtual commissioning.
 
 <p align="center">
-  <strong>
-    From process engineering diagrams to virtual commissioning, PLC control,
-    industrial communication, supervisory systems, and engineering analytics.
-  </strong>
+  <a href="#overview"><img alt="Status" src="https://img.shields.io/badge/status-active--development-blue"></a>
+  <a href="#technology-stack"><img alt="Technology" src="https://img.shields.io/badge/stack-CODESYS%20%2B%20Factory%20I%2FO-orange"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-green"></a>
 </p>
-
-<p align="center">
-  PFD / P&ID → I/O Engineering → CODESYS PLC → Factory I/O → HMI/SCADA → OPC UA / Modbus TCP → Industrial Data → Analytics
-</p>
-
-<p align="center">
-  <a href="#"><img alt="status" src="https://img.shields.io/badge/status-active--development-informational"></a>
-  <a href="#"><img alt="stack" src="https://img.shields.io/badge/PLC-CODESYS-blue"></a>
-  <a href="#"><img alt="sim" src="https://img.shields.io/badge/Simulation-Factory%20I%2FO-orange"></a>
-  <a href="#"><img alt="license" src="https://img.shields.io/badge/license-TBD-lightgrey"></a>
-</p>
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Engineering Philosophy](#engineering-philosophy)
-- [System Architecture](#system-architecture)
-- [Project Objectives](#project-objectives)
-- [Reference Architecture](#reference-architecture)
-- [Repository Structure](#repository-structure)
-- [Planned Industrial Automation Projects](#planned-industrial-automation-projects)
-- [PLC Software Architecture](#plc-software-architecture)
-- [PLC Programming Principles](#plc-programming-principles)
-- [Example Structured Text](#example-structured-text)
-- [Factory I/O Integration](#factory-io-integration)
-- [I/O Engineering](#io-engineering)
-- [Industrial Communication](#industrial-communication)
-- [HMI and SCADA](#hmi-and-scada)
-- [Alarm Engineering](#alarm-engineering)
-- [Fault Injection](#fault-injection)
-- [Virtual Commissioning](#virtual-commissioning)
-- [Engineering Metrics](#engineering-metrics)
-- [Industrial Data Layer](#industrial-data-layer)
-- [Future Industrial AI Layer](#future-industrial-ai-layer)
-- [Engineering Documentation](#engineering-documentation)
-- [Development Roadmap](#development-roadmap)
-- [Definition of Done](#definition-of-done)
-- [Reproducibility](#reproducibility)
-- [Who This Repository Is For](#who-this-repository-is-for)
-- [Scope Boundaries](#scope-boundaries)
-- [Standards and Engineering References](#standards-and-engineering-references)
-- [Contribution Philosophy](#contribution-philosophy)
-- [Long-Term Vision](#long-term-vision)
-- [Current Focus](#current-focus)
-- [Author](#author)
-- [License](#license)
-
----
 
 ## Overview
 
-**PFD · P&ID · PLC** is an open engineering repository for designing, implementing, simulating, validating, and documenting industrial automation systems from first principles.
+This repository brings together process engineering, instrumentation, PLC implementation, simulation, and digital validation into one reusable engineering workspace.
 
-The project connects traditionally separated engineering domains into a reproducible end-to-end workflow:
+The core objective is to move beyond isolated PLC exercises and instead create systems that can be traced from requirement to simulation, logic implementation, and evidence-based verification.
 
-1. Process understanding
-2. Process Flow Diagram development
-3. Piping and Instrumentation Diagram interpretation
-4. Instrument and I/O definition
-5. Control philosophy development
-6. PLC software architecture
-7. IEC 61131-3 implementation
-8. Virtual plant simulation
-9. Industrial communication
-10. HMI and SCADA integration
-11. Alarm and fault management
-12. Operational data acquisition
-13. Performance analysis
-14. Verification and virtual commissioning
+## Why this repository exists
 
-The primary automation stack is:
+Industrial automation projects work best when they link the following domains together:
 
-- **CODESYS** for IEC 61131-3 PLC engineering
-- **Factory I/O** for virtual industrial plant simulation
-- **OPC UA / Modbus TCP** for industrial communication
-- **Python** for automation, testing, analytics, and integration
-- **Grafana** (or equivalent tooling) for engineering visualization where applicable
+- Process flow and process design
+- PFD and P&ID interpretation
+- Instrumentation and I/O definition
+- Control philosophy and interlocks
+- PLC implementation and state-based logic
+- Factory I/O or virtual plant simulation
+- Industrial communication such as Modbus TCP and OPC UA
+- SCADA, alarms, trends, and operational visibility
+- Verification, testing, and evidence capture
 
-The objective is not to create isolated PLC exercises. The objective is to build complete industrial control systems that can be traced from an engineering requirement to a measurable, simulated plant response.
+## Technology stack
 
----
+| Layer | Tools |
+|---|---|
+| Process engineering | PFD, P&ID, engineering documentation |
+| PLC engineering | CODESYS, IEC 61131-3 |
+| Simulation | Factory I/O |
+| Communications | Modbus TCP, OPC UA |
+| Integration | Python, CSV, telemetry workflows |
+| Version control | Git, GitHub |
 
-## Engineering Philosophy
-
-Industrial automation is more than writing ladder logic. A credible automation system must connect:
-
-```mermaid
-flowchart TD
-    A[Process] --> B[Process Requirements]
-    B --> C[PFD]
-    C --> D[P&ID]
-    D --> E[Instrumentation]
-    E --> F[I/O List]
-    F --> G[Control Philosophy]
-    G --> H[PLC Software]
-    H --> I[Industrial Network]
-    I --> J[Virtual Plant]
-    J --> K[HMI / SCADA]
-    K --> L[Alarms + Historian]
-    L --> M[Data Analytics]
-    M --> N[Verification]
-```
-
-This repository therefore treats PLC programming as one component of a larger cyber-physical control system.
-
----
-
-## System Architecture
-
-### Core Technology Stack
-
-| Layer | Technology | Purpose |
-|---|---|---|
-| Process Engineering | PFD / P&ID | Process and instrumentation definition |
-| Virtual Plant | Factory I/O | 3D industrial process simulation |
-| PLC Engineering | CODESYS | IEC 61131-3 control implementation |
-| PLC Language | Structured Text | Primary control implementation |
-| Alternative PLC Languages | LD / FBD / SFC | Logic representation where appropriate |
-| Industrial Protocol | Modbus TCP | Deterministic PLC/simulator data exchange |
-| Interoperability | OPC UA | Structured industrial information exchange |
-| Integration | Python | Testing, telemetry, analytics, automation |
-| Supervisory Layer | HMI / SCADA | Operator interface and monitoring |
-| Data Layer | SQL / Time-Series DB | Historical process data |
-| Visualization | Grafana (or equivalent) | Engineering dashboards |
-| Version Control | Git + GitHub | Reproducibility and configuration management |
-
----
-
-## Project Objectives
-
-This repository is designed to demonstrate capability across the complete industrial automation lifecycle.
-
-### Process Engineering
-- Read and interpret Process Flow Diagrams
-- Read and develop Piping and Instrumentation Diagrams
-- Identify process variables
-- Define measurement points
-- Define manipulated variables
-- Define control loops
-- Map instruments to automation functions
-
-### PLC Engineering
-- IEC 61131-3 programming (Structured Text, Ladder Diagram, Function Block Diagram, Sequential Function Chart)
-- State-machine design
-- Modular Function Blocks
-- Equipment modules
-- Interlocks and permissives
-- Alarm management and fault handling
-- Automatic recovery
-- Manual and automatic operating modes
-
-### Control Engineering
-- Boolean and sequential control
-- Motor, valve, and conveyor control
-- PID control and cascade concepts
-- Setpoint management, deadband, and hysteresis
-- Anti-windup
-- Equipment coordination
-- Process optimization
-
-### Industrial Systems
-- Modbus TCP and OPC UA
-- PLC tag mapping
-- Network architecture
-- Data acquisition and historian integration
-- Supervisory monitoring
-- Industrial data pipelines
-
-### Verification
-- Normal, startup, and shutdown operation testing
-- Fault injection (sensor and actuator failure simulation)
-- Communication-loss testing
-- Interlock and alarm verification
-- Recovery testing
-- Throughput validation
-
----
-
-## Reference Architecture
-
-A typical project developed in this repository follows:
-
-```mermaid
-flowchart TD
-    subgraph ENG["Engineering Layer"]
-        PFD[PFD]
-        PID[P&ID]
-    end
-    PFD --> CP[Control Philosophy]
-    PID --> CP
-    CP --> IO[Instrument / I/O List]
-    IO --> PLC["CODESYS PLC<br/>State Machines · Function Blocks<br/>PID Controllers · Interlocks · Alarms"]
-    PLC --> NET[Modbus TCP / OPC UA]
-    NET --> FIO[Factory I/O]
-    NET --> HMI[HMI / SCADA]
-    NET --> PY[Python]
-    PY --> HIST[Historian]
-    HIST --> AN[Analytics]
-    FIO --> AN
-```
-
----
-
-## Repository Structure
-
-The repository is progressively evolving toward the following engineering structure:
+## Repository structure
 
 ```text
 pfd-p-id/
-│
 ├── README.md
 ├── LICENSE
 ├── CONTRIBUTING.md
-│
-├── 00_docs/
-│   ├── project-charter.md
-│   ├── system-overview.md
-│   ├── architecture.md
-│   ├── engineering-assumptions.md
-│   └── glossary.md
-│
-├── 01_process-engineering/
-│   ├── pfd/
-│   ├── process-description/
-│   ├── operating-philosophy/
-│   └── process-data/
-│
-├── 02_p-and-id/
-│   ├── drawings/
-│   ├── instrument-index/
-│   ├── equipment-list/
-│   ├── valve-list/
-│   └── loop-definition/
-│
-├── 03_control-philosophy/
-│   ├── control-narrative/
-│   ├── cause-and-effect/
-│   ├── interlock-matrix/
-│   ├── permissive-matrix/
-│   └── alarm-philosophy/
-│
-├── 04_io-engineering/
-│   ├── io-list/
-│   ├── tag-database/
-│   ├── signal-mapping/
-│   └── address-map/
-│
-├── 05_codesys/
-│   ├── project/
-│   ├── programs/
-│   ├── function-blocks/
-│   ├── data-types/
-│   ├── global-variable-lists/
-│   ├── state-machines/
-│   ├── pid/
-│   ├── alarms/
-│   └── libraries/
-│
-├── 06_factory-io/
-│   ├── scenes/
-│   ├── io-mapping/
-│   ├── screenshots/
-│   └── commissioning/
-│
-├── 07_industrial-network/
-│   ├── modbus-tcp/
-│   ├── opc-ua/
-│   ├── network-architecture/
-│   └── tag-mapping/
-│
-├── 08_hmi-scada/
-│   ├── screens/
-│   ├── alarm-system/
-│   ├── trends/
-│   └── operator-philosophy/
-│
-├── 09_data-platform/
-│   ├── python/
-│   ├── database/
-│   ├── historian/
-│   ├── telemetry/
-│   └── dashboards/
-│
-├── 10_testing/
-│   ├── test-plan/
-│   ├── unit-tests/
-│   ├── integration-tests/
-│   ├── fault-injection/
-│   ├── fat/
-│   └── validation-results/
-│
-├── 11_case-studies/
-│   ├── conveyor-sorting/
-│   ├── tank-control/
-│   ├── production-line/
-│   ├── material-handling/
-│   └── smart-manufacturing/
-│
-├── 12_performance/
-│   ├── throughput/
-│   ├── cycle-time/
-│   ├── oee/
-│   ├── energy/
-│   └── reliability/
-│
-├── 13_media/
-│   ├── architecture/
-│   ├── diagrams/
-│   ├── screenshots/
-│   ├── videos/
-│   └── demos/
-│
+├── SECURITY.md
+├── CODE_OF_CONDUCT.md
+├── .editorconfig
+├── .gitignore
+├── .github/
+│   ├── CODEOWNERS
+│   ├── dependabot.yml
+│   ├── pull_request_template.md
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.yml
+│   │   ├── feature_request.yml
+│   │   └── config.yml
+│   └── workflows/
+│       └── markdown-check.yml
+├── docs/
+│   ├── README.md
+│   └── roadmap.md
+├── design-p&id/
+├── pfd/
+├── plc/
+├── project/
+│   └── project-1-industrial-sorting-cell/
+│       ├── README.md
+│       ├── docs/
+│       ├── plc/
+│       ├── factoryio/
+│       ├── screenshots/
+│       ├── LICENSE
+│       ├── PROJECT_STATUS.md
+│       └── SECURITY.md
 └── references/
-    ├── pfd/
-    ├── p-and-id/
-    ├── plc/
-    ├── standards/
-    └── literature/
 ```
 
-> Existing repository material (`design-p&id/`, `pfd/`, `plc/`) will progressively be incorporated into this structure rather than discarded.
+## Featured project
 
-Every major project follows the same engineering lifecycle: **Requirement → PFD → P&ID → Control Philosophy → I/O → PLC → Virtual Plant → Communication → HMI → Test → Analytics.**
+The current working implementation is the sorting cell portfolio project:
 
----
+- [project/project-1-industrial-sorting-cell/README.md](project/project-1-industrial-sorting-cell/README.md)
 
-## Planned Industrial Automation Projects
+This project demonstrates:
 
-### Project 01 — Conveyor Sorting System
-**Status:** Planned
+- automated material handling
+- state-based PLC sequencing
+- interlocks and fault handling
+- Modbus TCP communication with Factory I/O
+- documentation and validation traceability
 
-A modular automated conveyor system for detection, classification, routing, and rejection.
-
-**Functions:** product detection · conveyor sequencing · classification logic · diverter control · reject handling · product counting · jam detection · interlocks · fault recovery · throughput measurement
+## Engineering workflow
 
 ```mermaid
 flowchart LR
-    A[Sensors] --> B[PLC State Machine]
-    B --> C[Classification]
-    C --> D[Routing Logic]
-    D --> E[Actuator Control]
-    E --> F[Production Metrics]
+    A[Requirement] --> B[PFD]
+    B --> C[P&ID]
+    C --> D[Control Philosophy]
+    D --> E[I/O List]
+    E --> F[PLC Logic]
+    F --> G[Virtual Plant]
+    G --> H[SCADA / HMI]
+    H --> I[Verification]
+    I --> J[Evidence]
 ```
 
-### Project 02 — Automated Material Handling System
-**Status:** Planned
+## Quick start
 
-A multi-zone material handling system demonstrating coordination between conveyors, buffers, sensors, and actuators.
+1. Review the repository overview in [README.md](README.md).
+2. Open the active project in [project/project-1-industrial-sorting-cell](project/project-1-industrial-sorting-cell).
+3. Read the design and test materials in the project docs folder.
+4. Validate the PLC logic and Factory I/O integration in your local engineering environment.
+5. Contribute back using the guidance in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-**Functions:** zone control · buffer management · merge/diverter logic · queue management · anti-collision · anti-deadlock logic · equipment handshake · automatic restart · fault isolation
+## Documentation
 
-### Project 03 — Tank Level Control
-**Status:** Planned
+- [docs/README.md](docs/README.md)
+- [docs/roadmap.md](docs/roadmap.md)
+- [project/project-1-industrial-sorting-cell/README.md](project/project-1-industrial-sorting-cell/README.md)
 
-A closed-loop process control system using simulated process instrumentation.
+## Contributing
 
-```mermaid
-flowchart LR
-    A[Level Sensor] --> B[Process Variable]
-    B --> C[PID Controller]
-    C --> D[Control Output]
-    D --> E[Pump / Valve]
-    E --> F[Tank Process]
-    F -. Feedback .-> A
-```
+We welcome improvements, corrections, and new industrial automation examples.
 
-**Engineering scope:** analog I/O · scaling · PID · setpoint management · anti-windup · high-high / low-low level protection · alarm generation · trend analysis · disturbance rejection
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a change.
 
-### Project 04 — Batch Process Automation
-**Status:** Planned
+## Security
 
-ISA-88-inspired batch sequencing for a simulated process plant.
+Please report security issues through the process defined in [SECURITY.md](SECURITY.md).
 
-```mermaid
-stateDiagram-v2
-    [*] --> IDLE
-    IDLE --> READY
-    READY --> FILL
-    FILL --> MIX
-    MIX --> PROCESS
-    PROCESS --> DRAIN
-    DRAIN --> COMPLETE
-    COMPLETE --> [*]
-```
+## License
 
-**Includes:** recipe parameters · equipment states · sequence transitions · hold/abort/reset · interlocks · alarm handling · batch metrics
+This project is licensed under the [MIT License](LICENSE).
 
-### Project 05 — Smart Manufacturing Cell
-**Status:** Planned Flagship Project
+## Project status
 
-The flagship implementation integrates multiple engineering layers into a single virtual manufacturing system.
+This repository is in active engineering development and is structured to support a portfolio of PLC and industrial automation case studies.
 
-```mermaid
-flowchart LR
-    A[Raw Material] --> B[Detection]
-    B --> C[Processing]
-    C --> D[Sorting]
-    D --> E[Buffer]
-    E --> F[Quality Control]
-    F --> G[Accept / Reject]
-    G --> H[Packaging]
-    H --> I[Warehouse]
-```
-
-| Domain | Scope |
-|---|---|
-| Control | Modular equipment control, state machines, interlocks, permissives, sequencing, fault handling, recovery logic, PID where applicable |
-| Supervisory | Production status, machine status, alarm summary, equipment modes, trends, operator commands |
-| Analytics | Throughput, cycle time, availability, performance, quality, OEE, downtime, fault frequency, energy indicators |
-
----
-
-## PLC Software Architecture
-
-PLC applications are designed around modular software components rather than monolithic control logic.
-
-```mermaid
-flowchart TD
-    APP[PLC Application] --> SM[System Manager]
-    APP --> MM[Mode Manager]
-    APP --> EM[Equipment Modules]
-    EM --> EM1[Conveyor]
-    EM --> EM2[Motor]
-    EM --> EM3[Valve]
-    EM --> EM4[Cylinder]
-    EM --> EM5[Pump]
-    APP --> PS[Process Sequences]
-    APP --> ST[State Machines]
-    APP --> IL[Interlocks]
-    APP --> PM[Permissives]
-    APP --> AM[Alarm Manager]
-    APP --> FM[Fault Manager]
-    APP --> PID[PID Controllers]
-    APP --> COM[Communication]
-    APP --> DIAG[Diagnostics]
-```
-
-**Example equipment state model:**
-
-```mermaid
-stateDiagram-v2
-    [*] --> OFF
-    OFF --> READY
-    READY --> STARTING
-    STARTING --> RUNNING
-    RUNNING --> STOPPING
-    STOPPING --> OFF
-
-    state "Any State" as ANY
-    ANY --> FAULT
-    FAULT --> RESETTING
-    RESETTING --> READY
-```
-
----
-
-## PLC Programming Principles
-
-**Deterministic behavior** — Control behavior should be predictable for every defined plant state.
-
-**Explicit state management** — Sequences use clearly defined states rather than uncontrolled combinations of Boolean conditions.
-
-**Modular design** — Equipment behavior is encapsulated into reusable Function Blocks where practical.
-
-**Safe default states** — Loss of command, communication, or a required permissive transitions equipment toward a defined safe state.
-
-**Separation of concerns:**
-
-```mermaid
-flowchart LR
-    A[Input Processing] --> B[Control Logic]
-    B --> C[Sequence Management]
-    C --> D[Output Commands]
-    D --> E[Diagnostics]
-```
-
-**Traceability:**
-
-```mermaid
-flowchart LR
-    A[Requirement] --> B[P&ID]
-    B --> C[Control Narrative]
-    C --> D[I/O]
-    D --> E[PLC Logic]
-    E --> F[Test Case]
-```
-
----
-
-## Example Structured Text
-
-```pascal
-CASE eState OF
-
-    STATE_IDLE:
-        xMotorCmd := FALSE;
-
-        IF xStartCmd AND xPermissiveOK THEN
-            eState := STATE_STARTING;
-        END_IF
-
-    STATE_STARTING:
-        xMotorCmd := TRUE;
-
-        IF xMotorRunning THEN
-            eState := STATE_RUNNING;
-        ELSIF xStartTimeout THEN
-            eState := STATE_FAULT;
+The current focus is the sorting cell implementation, with a broader long-term goal to expand into additional industrial automation examples across process, material handling, and digital manufacturing domains.
         END_IF
 
     STATE_RUNNING:
