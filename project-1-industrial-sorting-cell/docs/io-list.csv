@@ -1,0 +1,27 @@
+Tag,Type,Source/Destination,Description,Normal State
+iAtEntry,DI,Factory I/O -> PLC,Box detected at entry,FALSE
+iLowBox,DI,Factory I/O -> PLC,Low height sensor,FALSE
+iHighBox,DI,Factory I/O -> PLC,High height sensor,FALSE
+iAtTurnEntry,DI,Factory I/O -> PLC,Box at turntable entry,FALSE
+iAtLoadPos,DI,Factory I/O -> PLC,Turntable at load position,TRUE when home
+iAtUnloadPos,DI,Factory I/O -> PLC,Turntable at unload position,FALSE
+iAtFront,DI,Factory I/O -> PLC,Box fully loaded on turntable,FALSE
+iAtRightEntry,DI,Factory I/O -> PLC,Box enters right conveyor,FALSE
+iAtLeftEntry,DI,Factory I/O -> PLC,Box enters left conveyor,FALSE
+iAtRightExit,DI,Factory I/O -> PLC,Box at right conveyor exit,FALSE
+iAtLeftExit,DI,Factory I/O -> PLC,Box at left conveyor exit,FALSE
+iStartPB,DI,Factory I/O -> PLC,Start pushbutton NO,FALSE
+iStopNC,DI,Factory I/O -> PLC,Stop pushbutton NC,TRUE
+iResetPB,DI,Factory I/O -> PLC,Reset pushbutton NO,FALSE
+iEStopNC,DI,Factory I/O -> PLC,Simulated emergency stop NC,TRUE
+iAutoMode,DI,Factory I/O -> PLC,Auto selector,TRUE for Auto
+oFeederConveyor,DO,PLC -> Factory I/O,Feeder conveyor motor,FALSE
+oEntryConveyor,DO,PLC -> Factory I/O,Entry conveyor motor,FALSE
+oLoad,DO,PLC -> Factory I/O,Turntable belt load direction,FALSE
+oUnload,DO,PLC -> Factory I/O,Turntable belt unload direction,FALSE
+oTurn,DO,PLC -> Factory I/O,Turntable rotate / unload position command,FALSE
+oLeftConveyor,DO,PLC -> Factory I/O,Left exit conveyor,FALSE
+oRightConveyor,DO,PLC -> Factory I/O,Right exit conveyor,FALSE
+oRunLamp,DO,PLC -> Factory I/O,Machine running indication,FALSE
+oFaultLamp,DO,PLC -> Factory I/O,Fault indication,FALSE
+oAutoLamp,DO,PLC -> Factory I/O,Auto mode indication,FALSE

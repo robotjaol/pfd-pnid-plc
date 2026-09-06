@@ -1,0 +1,68 @@
+PROGRAM PLC_PRG
+VAR
+    (* Machine status *)
+    M_Run               : BOOL;
+    M_Fault             : BOOL;
+    M_AutoPermissive    : BOOL;
+    M_ManualPermissive  : BOOL;
+
+    (* Entry tracking *)
+    M_EntryOccupied     : BOOL;
+    M_LowSeen           : BOOL;
+    M_HighSeen          : BOOL;
+    M_BoxLow            : BOOL;
+    M_BoxHigh           : BOOL;
+
+    (* One hot automatic sequence states *)
+    M_Idle              : BOOL := TRUE;
+    M_Loading           : BOOL;
+    M_RotateToUnload    : BOOL;
+    M_Discharge         : BOOL;
+    M_ReturnHome        : BOOL;
+
+    (* Exit conveyor occupancy *)
+    M_LeftRun           : BOOL;
+    M_RightRun          : BOOL;
+
+    (* Edge blocks *)
+    R_AtEntry           : R_TRIG;
+    R_AtTurnEntry       : R_TRIG;
+    R_AtRightEntry      : R_TRIG;
+    R_AtLeftEntry       : R_TRIG;
+    F_AtRightExit       : F_TRIG;
+    F_AtLeftExit        : F_TRIG;
+    R_Fault             : R_TRIG;
+
+    (* Fault supervision timers *)
+    T_EntryJam          : TON;
+    T_LoadTimeout       : TON;
+    T_RotateTimeout     : TON;
+    T_DischargeTimeout  : TON;
+    T_ReturnTimeout     : TON;
+    T_LeftExitTimeout   : TON;
+    T_RightExitTimeout  : TON;
+
+    (* Intermediate automatic commands *)
+    Auto_Feeder         : BOOL;
+    Auto_Entry          : BOOL;
+    Auto_Load           : BOOL;
+    Auto_Unload         : BOOL;
+    Auto_Turn           : BOOL;
+    Auto_Left           : BOOL;
+    Auto_Right          : BOOL;
+
+    (* Intermediate manual commands *)
+    Manual_Feeder       : BOOL;
+    Manual_Entry        : BOOL;
+    Manual_Load         : BOOL;
+    Manual_Unload       : BOOL;
+    Manual_Turn         : BOOL;
+    Manual_Left         : BOOL;
+    Manual_Right        : BOOL;
+
+    (* Production counters *)
+    C_Total             : CTU;
+    C_High              : CTU;
+    C_Low               : CTU;
+    C_Fault             : CTU;
+END_VAR

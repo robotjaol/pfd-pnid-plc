@@ -1,0 +1,27 @@
+Direction,Factory I/O Tag,CODESYS Variable,Modbus Area,Logical Index,Purpose
+FIO -> PLC,At Entry,FIO.iAtEntry,Coil,0,Entry box sensor
+FIO -> PLC,Low Box,FIO.iLowBox,Coil,1,Low height sensor
+FIO -> PLC,High Box,FIO.iHighBox,Coil,2,High height sensor
+FIO -> PLC,At Turn Entry,FIO.iAtTurnEntry,Coil,3,Turntable entry sensor
+FIO -> PLC,At Load Pos,FIO.iAtLoadPos,Coil,4,Turntable home position
+FIO -> PLC,At Unload Pos,FIO.iAtUnloadPos,Coil,5,Turntable unload position
+FIO -> PLC,At Front,FIO.iAtFront,Coil,6,Box on turntable
+FIO -> PLC,At Right Entry,FIO.iAtRightEntry,Coil,7,Right line entry
+FIO -> PLC,At Left Entry,FIO.iAtLeftEntry,Coil,8,Left line entry
+FIO -> PLC,At Right Exit,FIO.iAtRightExit,Coil,9,Right line exit
+FIO -> PLC,At Left Exit,FIO.iAtLeftExit,Coil,10,Left line exit
+FIO -> PLC,Start PB,FIO.iStartPB,Coil,11,Start command
+FIO -> PLC,Stop PB NC,FIO.iStopNC,Coil,12,Stop healthy signal
+FIO -> PLC,Reset PB,FIO.iResetPB,Coil,13,Fault reset
+FIO -> PLC,E Stop NC,FIO.iEStopNC,Coil,14,Simulated safety healthy signal
+FIO -> PLC,Auto Mode,FIO.iAutoMode,Coil,15,Auto selector
+PLC -> FIO,Feeder Conveyor,FIO.oFeederConveyor,Discrete Input,0,Feeder motor
+PLC -> FIO,Entry Conveyor,FIO.oEntryConveyor,Discrete Input,1,Entry motor
+PLC -> FIO,Load,FIO.oLoad,Discrete Input,2,Turntable belt load
+PLC -> FIO,Unload,FIO.oUnload,Discrete Input,3,Turntable belt unload
+PLC -> FIO,Turn,FIO.oTurn,Discrete Input,4,Turntable position command
+PLC -> FIO,Left Conveyor,FIO.oLeftConveyor,Discrete Input,5,Left exit motor
+PLC -> FIO,Right Conveyor,FIO.oRightConveyor,Discrete Input,6,Right exit motor
+PLC -> FIO,Run Lamp,FIO.oRunLamp,Discrete Input,7,Run indication
+PLC -> FIO,Fault Lamp,FIO.oFaultLamp,Discrete Input,8,Fault indication
+PLC -> FIO,Auto Lamp,FIO.oAutoLamp,Discrete Input,9,Auto indication

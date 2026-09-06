@@ -1,0 +1,35 @@
+VAR_GLOBAL
+    (* Factory I/O sensors *)
+    iAtEntry        : BOOL;
+    iLowBox         : BOOL;
+    iHighBox        : BOOL;
+    iAtTurnEntry    : BOOL;
+    iAtLoadPos      : BOOL;
+    iAtUnloadPos    : BOOL;
+    iAtFront        : BOOL;
+    iAtRightEntry   : BOOL;
+    iAtLeftEntry    : BOOL;
+    iAtRightExit    : BOOL;
+    iAtLeftExit     : BOOL;
+
+    (* Operator controls added to the custom Factory I/O scene *)
+    iStartPB        : BOOL;
+    iStopNC         : BOOL := TRUE;
+    iResetPB        : BOOL;
+    iEStopNC        : BOOL := TRUE;
+    iAutoMode       : BOOL := TRUE;
+
+    (* Factory I/O actuators *)
+    oFeederConveyor : BOOL;
+    oEntryConveyor  : BOOL;
+    oLoad           : BOOL;
+    oUnload         : BOOL;
+    oTurn           : BOOL;
+    oLeftConveyor   : BOOL;
+    oRightConveyor  : BOOL;
+
+    (* Indicators *)
+    oRunLamp        : BOOL;
+    oFaultLamp      : BOOL;
+    oAutoLamp       : BOOL;
+END_VAR

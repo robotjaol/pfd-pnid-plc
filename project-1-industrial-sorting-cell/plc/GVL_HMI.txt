@@ -1,0 +1,10 @@
+VAR_GLOBAL
+    (* Manual maintenance commands. Drive from CODESYS watch list or a future HMI. *)
+    xJogFeeder      : BOOL;
+    xJogEntry       : BOOL;
+    xJogLoad        : BOOL;
+    xJogUnload      : BOOL;
+    xJogTurn        : BOOL;
+    xJogLeftExit    : BOOL;
+    xJogRightExit   : BOOL;
+END_VAR
