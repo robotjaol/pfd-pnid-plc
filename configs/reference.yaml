@@ -1,0 +1,37 @@
+simulation:
+  duration_s: 900
+  dt_s: 1.0
+  seed: 42
+plant:
+  reservoir_pressure_bar: 180.0
+  productivity_index_m3d_bar: 7.5
+  wellhead_pressure_bar: 22.0
+  hydrostatic_bar: 95.0
+  tubing_loss_bar_per_flow2: 0.00020
+  choke_loss_bar_per_flow2: 0.00010
+  nominal_frequency_hz: 50.0
+  nominal_head_bar: 105.0
+  shutoff_head_bar: 135.0
+  best_efficiency_flow_m3d: 620.0
+  nominal_efficiency: 0.70
+  motor_efficiency: 0.88
+  thermal_time_constant_s: 480.0
+  ambient_temperature_c: 55.0
+control:
+  pressure_setpoint_bar: 70.0
+  kp: 0.16
+  ki: 0.018
+  kd: 0.0
+  output_min_hz: 35.0
+  output_max_hz: 60.0
+  ramp_limit_hz_s: 0.25
+safety:
+  minimum_intake_pressure_bar: 32.0
+  maximum_current_a: 180.0
+  maximum_temperature_c: 125.0
+  restart_lockout_s: 60
+scenario:
+  reservoir_decline_start_s: 250
+  reservoir_decline_bar: 18.0
+  blockage_start_s: 520
+  final_blockage_fraction: 0.35

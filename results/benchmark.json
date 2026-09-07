@@ -1,0 +1,24 @@
+{
+  "fixed": {
+    "samples": 901,
+    "pressure_rmse_bar": 21.60797,
+    "energy_kwh": 25.4706,
+    "produced_volume_m3": 5.96979,
+    "energy_intensity_kwh_m3": 4.26658,
+    "tripped": false,
+    "first_out": "NONE"
+  },
+  "pid": {
+    "samples": 901,
+    "pressure_rmse_bar": 20.17229,
+    "energy_kwh": 42.6382,
+    "produced_volume_m3": 6.12629,
+    "energy_intensity_kwh_m3": 6.95987,
+    "tripped": false,
+    "first_out": "NONE"
+  },
+  "metadata": {
+    "status": "simulation-only",
+    "interpretation": "Reference-model outputs; not validated field-performance claims."
+  }
+}

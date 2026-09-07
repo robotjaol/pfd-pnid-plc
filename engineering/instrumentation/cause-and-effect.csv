@@ -1,0 +1,7 @@
+cause_id,cause,threshold,delay_s,effect,latch,reset
+CE-001,Low intake pressure,<32 bar,3,Trip VFD and record first-out,yes,manual after permissive
+CE-002,High motor current,>180 A,2,Trip VFD and record first-out,yes,manual after permissive
+CE-003,High motor temperature,>125 degC,2,Trip VFD and record first-out,yes,manual after cool-down
+CE-004,Emergency stop,active,0,Trip VFD,yes,physical reset
+CE-005,Controller command stale,>5 s,5,Enter degraded fixed command,no,automatic when valid
+CE-006,Analytics unavailable,invalid,1,Disable autonomous mode,no,operator acknowledge
