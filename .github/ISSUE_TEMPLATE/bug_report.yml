@@ -1,0 +1,48 @@
+name: Bug report
+description: Report an issue with the repository, project files, or documentation.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug or issue. Please provide enough detail so we can reproduce and verify the fix.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Short description of the issue.
+      placeholder: Example: README links do not match repo structure
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Navigate to...
+        2. Open...
+        3. Observe...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: OS, browser, tool version, project path, etc.

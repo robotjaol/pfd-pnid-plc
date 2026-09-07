@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest an improvement or enhancement for the repository.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose a new capability, documentation update, or engineering improvement.
+
+  - type: input
+    id: title
+    attributes:
+      label: Feature title
+      placeholder: Example: Add digital twin verification checklist
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: What gap are you trying to address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the proposed approach or design.
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Expected impact
+      description: What value would this bring to the project or users?
