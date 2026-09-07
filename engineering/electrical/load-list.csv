@@ -1,6 +1,0 @@
-tag,service,supply,estimated_kw,duty,status
-VFD-101,ESP variable frequency drive,3-phase conceptual,200.0,continuous,illustrative
-PSU-101,24 VDC control power supply,230 VAC,0.48,continuous,illustrative
-PLC-101,Well control PLC,24 VDC,0.03,continuous,illustrative
-HMI-101,Operator panel,24 VDC,0.02,continuous,illustrative
-EIO-101,Edge I/O interface,24 VDC,0.01,continuous,illustrative

@@ -1,9 +1,0 @@
-tag,service,signal,range,unit,alarm_or_trip,status
-PIT-101,ESP intake pressure,4-20mA,0-250,bar,LL trip,virtual
-PIT-102,ESP discharge pressure,4-20mA,0-300,bar,HH alarm,virtual
-TT-101,Motor temperature,4-20mA,0-180,degC,HH trip,virtual
-FIT-101,Surface liquid flow,4-20mA,0-1200,m3/d,LL alarm,virtual
-AIT-101,Motor current,fieldbus,0-120,A,HH trip,virtual
-SIC-101,VFD frequency command,fieldbus,0-70,Hz,rate limited,virtual
-ZT-101,Choke position,4-20mA,0-100,percent,deviation alarm,virtual
-

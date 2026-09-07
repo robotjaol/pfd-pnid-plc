@@ -1,8 +1,0 @@
-parameter,value,unit,status
-edge_enclosure_width,160,mm,design target
-edge_enclosure_height,120,mm,design target
-edge_enclosure_depth,75,mm,design target
-din_rail_width,35,mm,standard interface
-minimum_terminal_clearance,25,mm,design target
-minimum_service_clearance,50,mm,design target
-

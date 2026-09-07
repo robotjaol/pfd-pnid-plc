@@ -1,5 +1,0 @@
-drawing_id,title,status,source
-PFD-001,ESP well process flow diagram,design-basis,docs/physics-model.md
-PID-001,ESP well instrumentation diagram,design-basis,engineering/instrumentation/instrument-index.csv
-NWD-001,Industrial communications architecture,design-basis,hmi/tags.csv
-
